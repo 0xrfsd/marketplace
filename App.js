@@ -45,7 +45,7 @@ const HorizontalViewDuo = () => {
         }}
       >
         <Text style={{ fontSize: 18, marginVertical: 5 }}>
-          Categorias <Text style={{ fontWeight: "bold" }}>populares</Text>
+          Categorias <Text style={{ fontWeight: "bold" }}>populares.</Text>
         </Text>
         <Text
           style={{
@@ -145,7 +145,7 @@ const HorizontalView = () => {
         }}
       >
         <Text style={{ fontSize: 18, marginVertical: 5 }}>
-          Categorias <Text style={{ fontWeight: "bold" }}>populares</Text>
+          Categorias <Text style={{ fontWeight: "bold" }}>populares.</Text>
         </Text>
         <Text
           style={{
@@ -228,8 +228,6 @@ const VerticalView = () => {
         <View
           style={{
             paddingVertical: 10,
-            borderTopWidth: 1,
-            borderTopColor: "#ddd",
             borderBottomWidth: 1,
             borderBottomColor: "#ddd",
             height: "auto",
@@ -242,7 +240,7 @@ const VerticalView = () => {
           <Image
             style={{
               borderRadius: 5,
-              height: windowHeight / 5,
+              height: 100,
               width: windowWidth / 2,
               marginRight: 10,
             }}
@@ -321,9 +319,8 @@ const VerticalView = () => {
       </View>
 
       <View>
-        <Item image="https://images.pexels.com/photos/788946/pexels-photo-788946.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" />
-        <Item />
-        <Item />
+      <Item image="https://images.pexels.com/photos/788946/pexels-photo-788946.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" />
+      <Item image="https://images.pexels.com/photos/788946/pexels-photo-788946.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" />
       </View>
     </View>
   );
@@ -458,7 +455,7 @@ const HomeTabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="Explorar"
+        name="Favoritos"
         component={Favoritos}
         options={{
           tabBarIcon: ({ color }) => (
@@ -646,8 +643,6 @@ function HomeScreen() {
       >
         <HorizontalView />
         <VerticalView />
-        <HorizontalViewDuo />
-        <HorizontalView />
         <View style={{ height: 30 }} />
       </ScrollView>
     </>
