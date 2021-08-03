@@ -11,12 +11,19 @@ import {
   Image,
   ImageBackground,
   Dimensions,
+  Pressable,
 } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import { AntDesign, Fontisto, FontAwesome5 } from "@expo/vector-icons";
+import {
+  Feather,
+  AntDesign,
+  Fontisto,
+  FontAwesome5,
+  Ionicons,
+} from "@expo/vector-icons";
 
 import { Container } from "./scroll.js";
 import { Entypo } from "expo-vector-icons";
@@ -109,7 +116,56 @@ const HorizontalViewDuo = () => {
   );
 };
 
-const HorizontalView = () => {
+const CategoriasNew = () => {
+  const [active, setActive] = React.useState("Casa");
+
+  const lista = ["Casa", "Ofertas do dia", "Cozinha", "Carro", "Pet"];
+
+  const Categoria = (props) => {
+    return (
+      <>
+        <Pressable
+          onPress={() => {
+
+            lista.map((i) => {
+              props.categoria === i ? setActive(props.categoria) : null
+            })
+
+          }}
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            borderRadius: 5,
+            marginHorizontal: 10,
+            width: "auto",
+            height: "auto",
+            paddingVertical: 10,
+            paddingHorizontal: 15,
+            backgroundColor: props.categoria === active ? "#fda540" : "#ddd",
+            justifyContent: "space-around",
+            alignItems: "center",
+          }}
+        >
+          <Text>{props.categoria}</Text>
+        </Pressable>
+      </>
+    );
+  };
+
+  return (
+    <>
+      <Container style={{ paddingBottom: 20, marginTop: 10 }}>
+        <Categoria categoria="Casa" />
+        <Categoria categoria="Ofertas do dia" />
+        <Categoria categoria="Cozinha" />
+        <Categoria categoria="Carro" />
+        <Categoria categoria="Pet" />
+      </Container>
+    </>
+  );
+};
+
+const Categorias = () => {
   const windowWidth = Dimensions.get("window").width;
   const windowHeight = Dimensions.get("window").height;
 
@@ -270,13 +326,7 @@ const VerticalView = () => {
                 flexDirection: "row",
               }}
             >
-              <Entypo
-                name="location"
-                size={14}
-                style={{ marginRight: 5 }}
-                color="#777"
-              />
-              <Text style={{ color: "#777" }}>Anápolis</Text>
+              <Text style={{ color: "#777" }}>Anápolis, GO</Text>
             </View>
             <Text
               style={{
@@ -319,8 +369,10 @@ const VerticalView = () => {
       </View>
 
       <View>
-      <Item image="https://images.pexels.com/photos/788946/pexels-photo-788946.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" />
-      <Item image="https://images.pexels.com/photos/788946/pexels-photo-788946.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" />
+        <Item image="https://images.pexels.com/photos/788946/pexels-photo-788946.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" />
+        <Item image="https://images.pexels.com/photos/788946/pexels-photo-788946.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" />
+        <Item image="https://images.pexels.com/photos/788946/pexels-photo-788946.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" />
+        <Item image="https://images.pexels.com/photos/788946/pexels-photo-788946.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" />
       </View>
     </View>
   );
@@ -500,8 +552,8 @@ function HomeScreen() {
   const windowWidth = Dimensions.get("window").width;
   const windowHeight = Dimensions.get("window").height;
 
-  return (
-    <>
+  const Header = () => {
+    return (
       <View
         style={{
           backgroundColor: "#fff",
@@ -517,9 +569,9 @@ function HomeScreen() {
             justifyContent: "space-between",
           }}
         >
-          <AntDesign name="user" size={22} color="black" />
-          <Text style={{ fontWeight: "bold", fontSize: 22 }}>Serviços</Text>
-          <AntDesign name="hearto" size={22} color="black" />
+          <Feather name="sidebar" size={22} color="black" />
+          <Text style={{ fontWeight: "bold", fontSize: 22 }}>Amazon</Text>
+          <AntDesign name="shoppingcart" size={22} color="black" />
         </View>
         <View style={{ display: "flex", flexDirection: "row", marginTop: 10 }}>
           <View
@@ -528,11 +580,11 @@ function HomeScreen() {
               paddingLeft: 10,
               alignItems: "center",
               justifyContent: "center",
-              backgroundColor: "#ddd",
-              height: 40,
+              backgroundColor: "#eee",
+              height: 50,
               width: "10%",
-              borderTopLeftRadius: 5,
-              borderBottomLeftRadius: 5,
+              borderTopLeftRadius: 10,
+              borderBottomLeftRadius: 10,
             }}
           >
             <AntDesign name="search1" size={24} color="#aaa" />
@@ -544,17 +596,17 @@ function HomeScreen() {
             onBlur={() => {
               setPesquisa(false);
             }}
-            placeholder="Busca"
+            placeholder="O que você está procurando?"
             style={{
               marginBottom: 10,
               paddingRight: 10,
               marginRight: "2.5%",
               width: "85%",
               paddingLeft: 10,
-              borderTopRightRadius: 5,
-              borderBottomRightRadius: 5,
-              height: 40,
-              backgroundColor: "#ddd",
+              borderTopRightRadius: 10,
+              borderBottomRightRadius: 10,
+              height: 50,
+              backgroundColor: "#eee",
               display: "flex",
               flexDirection: "row",
               alignItems: "center",
@@ -634,14 +686,20 @@ function HomeScreen() {
             </View>
           </View>
         ) : null}
+        <CategoriasNew />
       </View>
+    );
+  };
+
+  return (
+    <>
+      <Header />
       <ScrollView
         scrollEnabled={pesquisa ? false : true}
         style={{
           backgroundColor: pesquisa ? "#ddd" : "transparent",
         }}
       >
-        <HorizontalView />
         <VerticalView />
         <View style={{ height: 30 }} />
       </ScrollView>
